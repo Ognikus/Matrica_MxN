@@ -10,35 +10,63 @@ namespace ConsoleApplication3
     {
         static void Main(string[] args)
         {
-            Console.Write("Столбцов: ");
-            int m = int.Parse(Console.ReadLine());
-            Console.Write("Строк: ");
-            int n = int.Parse(Console.ReadLine());
-            int[,] mas = new int[m, n];
-            Console.WriteLine();
-
-            Console.WriteLine("Заполни матрицу");
-
-            for (int i = 0; i < m; i++)
+            int m, n, c;
+            while (true)
             {
-                for (int j = 0; j < n; j++)
+                Console.Write("Столбцов: ");
+                if (int.TryParse(Console.ReadLine(), out m))
                 {
-                    Console.Write("mas[" + i + "," + j + "]: ");
-                    mas[i, j] = int.Parse(Console.ReadLine());
-                }
-            }
-            Console.WriteLine();
+                    Console.Write("Строк: ");
+                    if (int.TryParse(Console.ReadLine(), out n))
+                    {
+                        int[,] mas = new int[m, n];
+                        Console.WriteLine();
+                        Console.WriteLine("Заполни матрицу");
+                       
+                        for (int i = 0; i < m; i++)
+                        {
+                            for (int j = 0; j < n; j++)
+                            {
+                                Console.Write("mas[" + i + "," + j + "]: ");
+                                if (int.TryParse(Console.ReadLine(), out c))
+                                {
+                                    mas[i, j] = c;
+                                }
+                                
+                                else
+                                {
+                                    Console.WriteLine("Ты втираешь мне каку-то дичь!");
+                                }
 
-            for (int i = 0; i < m; i++)
-            {
-                for (int j = 0; j < n; j++)
-                {
-                    Console.Write(" mas[" + i + "," + j + "]: " + mas[i,j] + "\t");
+                            }
+
+                        }
+                        Console.WriteLine();
+
+                        for (int i = 0; i < m; i++)
+                        {
+                            for (int j = 0; j < n; j++)
+                            {
+                                Console.Write(" mas[" + i + "," + j + "]: " + mas[i, j] + "\t");
+                            }
+                            Console.WriteLine();
+                        }
+                        Console.WriteLine(f(mas));
+                        Console.ReadLine();
+                    }
+                    else
+                    {
+                        Console.WriteLine("Введите цифры!");
+                    }
                 }
-                Console.WriteLine();
+                else
+                {
+                    Console.WriteLine("Введите цифры!");
+                }
+
             }
-            Console.WriteLine(f(mas));
-            Console.ReadLine();
+
+            
         }
 
 
@@ -56,7 +84,7 @@ namespace ConsoleApplication3
                 {
                     accumulator += m[i, j];
                 }
-                Console.Write("Сума в строке " + i + " = " + accumulator + ' ');
+                Console.Write("\nСума в строке " + i + " = " + accumulator + ' ');
             }
             return res;
         }
